@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "site": "shoppinglist-d0d2b-f9d95",
+    "public": "dist/shopping-app/browser",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
