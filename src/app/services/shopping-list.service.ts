@@ -7,18 +7,17 @@ import {
 import {
   collection,
   onSnapshot,
-  collectionData,
   Firestore,
+  Unsubscribe,
 } from '@angular/fire/firestore';
-import { map, Observable } from 'rxjs';
 import { Item } from '../model/item';
-import { snapshotChanges } from '@angular/fire/compat/database';
 import { AuthenticationService } from './authentication.service';
 @Injectable({
   providedIn: 'root',
 })
 export class ShoppingListService {
   private shoppingListId = 'LSE3gE8S7VLPGnL9NgRV';
+  private unsubscribe: Unsubscribe | undefined;
 
   public items: WritableSignal<Item[] | undefined> = signal<Item[] | undefined>(
     undefined
@@ -30,9 +29,11 @@ export class ShoppingListService {
   ) {
     effect(() => {
       const isLoggedIn = authService.isLoggedIn();
-      debugger;
-      if(isLoggedIn === true && this.items() === undefined)
+      if(isLoggedIn === true)
       {
+        if(this.unsubscribe){
+          this.unsubscribe();
+        }
         this.init();
       }
     });
@@ -43,7 +44,7 @@ export class ShoppingListService {
       this.firestore,
       `/shoppinglists/${this.shoppingListId}/items`
     );
-    onSnapshot(list, (change) => {
+    this.unsubscribe = onSnapshot(list, (change) => {
       const items: Item[] = [];
       change.forEach((doc) => {
         items.push(doc.data() as Item);

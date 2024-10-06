@@ -12,7 +12,4 @@ import { LoginContainerComponent } from './login/login-container/login-container
 })
 export class AppComponent {
 
-  constructor() {
-    
-  }
 }
