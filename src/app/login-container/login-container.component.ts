@@ -1,16 +1,17 @@
-import { Component, Signal, WritableSignal } from '@angular/core';
+import { Component, Signal } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import { User } from '../model/user';
 import { JsonPipe } from '@angular/common';
+import { LoginDetailComponent } from "../login-detail/login-detail.component";
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [JsonPipe],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  imports: [JsonPipe, LoginContainerComponent, LoginDetailComponent],
+  templateUrl: './login-container.component.html',
+  styleUrl: './login-container.component.scss'
 })
-export class LoginComponent {
+export class LoginContainerComponent {
 
 
   public user: Signal<User | undefined >;

@@ -11,10 +11,7 @@ export const authGuard = () => {
   );
 
   const router = inject(Router);
-  return isLoggedIn.pipe(
-    tap(x => {
-        console.log(`Tappy: ${x}`)
-    }),
+  return isLoggedIn.pipe(   
     filter((x) => x !== undefined),
     map((x) => {
       if (x === true) {

@@ -28,8 +28,7 @@ export class AuthenticationService {
     signal<User | undefined | 'unauthenticated'>(undefined);
 
   public isLoggedIn: Signal<boolean | undefined> = computed(() => {
-    const state = this.userState();
-    console.log(`state: ${state}`);
+    const state = this.userState();   
     if (state === 'unauthenticated') {
       return false;
     } else if (state?.displayName) {

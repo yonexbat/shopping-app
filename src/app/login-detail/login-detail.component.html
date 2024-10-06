@@ -1,0 +1,12 @@
+<div>
+    <p>
+        {{ user()?.displayName }}
+      
+        @if( isLoggedIn() === false) {
+        <button (click)="loginClick()">Login</button>
+        } @else if( isLoggedIn() === true ) {
+        <button (click)="logoffClick()">Logoff</button>
+        }        
+      </p>
+      
+</div>
