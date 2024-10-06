@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ShoppingListService } from '../../services/shopping-list.service';
 
 @Component({
   selector: 'app-item-collection-container',
@@ -8,5 +9,8 @@ import { Component } from '@angular/core';
   styleUrl: './item-collection-container.component.scss'
 })
 export class ItemCollectionContainerComponent {
+  public constructor(private shoppingListService: ShoppingListService){
+    
+  }
 
 }

@@ -8,11 +8,9 @@ import {
 import {
   Auth,
   authState,
-  getRedirectResult,
   GoogleAuthProvider,
   signInWithRedirect,
   signOut,
-  UserCredential,
 } from '@angular/fire/auth';
 import { User } from '../model/user';
 
