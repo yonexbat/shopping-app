@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { ItemCollectionComponent } from './item-collection/item-collection.component';
 import { authGuard } from './services/authguard';
+import { ItemCollectionContainerComponent } from './item-collection/item-collection-container/item-collection-container.component';
 
 export const routes: Routes = [
-  { path: 'item-collection', component: ItemCollectionComponent, canActivate: [authGuard] },
+  { path: 'item-collection', component: ItemCollectionContainerComponent, canActivate: [authGuard] },
 ];

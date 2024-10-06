@@ -1,7 +1,7 @@
 import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { LoginContainerComponent } from './login-container/login-container.component';
+import { LoginContainerComponent } from './login/login-container/login-container.component';
 
 @Component({
   selector: 'app-root',

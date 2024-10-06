@@ -1,6 +1,6 @@
 import { Component, Signal } from '@angular/core';
-import { AuthenticationService } from '../services/authentication.service';
-import { User } from '../model/user';
+import { AuthenticationService } from '../../services/authentication.service';
+import { User } from '../../model/user';
 import { JsonPipe } from '@angular/common';
 import { LoginDetailComponent } from "../login-detail/login-detail.component";
 

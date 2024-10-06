@@ -1,5 +1,5 @@
 import { Component, input, output } from '@angular/core';
-import { User } from '../model/user';
+import { User } from '../../model/user';
 
 @Component({
   selector: 'app-login-detail',
