@@ -1,0 +1,9 @@
+<p>
+  {{ user()?.displayName }}
+
+  @if( !user()) {
+  <button (click)="loginClick()">Login</button>
+  } @else {
+    <button (click)="logoffClick()">Logoff</button>
+  }
+</p>

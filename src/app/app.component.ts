@@ -1,23 +1,18 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { collection, collectionData, Firestore } from '@angular/fire/firestore';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Observable } from 'rxjs';
+import { LoginComponent } from './login/login.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, AsyncPipe],
+  imports: [RouterOutlet, AsyncPipe, LoginComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  firestore: Firestore = inject(Firestore);
-  items$: Observable<any[]>;
-  title = 'shopping-app';
 
   constructor() {
-    const aCollection = collection(this.firestore, 'shoppinglists')
-    this.items$ = collectionData(aCollection);
+    
   }
 }
