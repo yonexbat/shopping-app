@@ -1,1 +1,7 @@
-<p>item-collection-detail works!</p>
+<div>
+    @for (item of items(); track $index) {
+        <div>
+            {{ item.name }}
+        </div>
+    }
+</div>

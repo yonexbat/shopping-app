@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { Item } from '@angular/fire/analytics';
 
 @Component({
   selector: 'app-item-collection-detail',
@@ -8,5 +9,5 @@ import { Component } from '@angular/core';
   styleUrl: './item-collection-detail.component.scss'
 })
 export class ItemCollectionDetailComponent {
-
+  public items = input<Item[]>();    
 }

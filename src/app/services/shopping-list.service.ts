@@ -49,7 +49,14 @@ export class ShoppingListService {
       change.forEach((doc) => {
         items.push(doc.data() as Item);
       });
+      this.sortByName(items);
       this.items.set(items);
     });
+  }
+
+  sortByName(items: Item[] ){
+    items.sort((a: Item, b: Item) => {
+      return (a.name ?? '').localeCompare(b.name ?? '');
+    })
   }
 }

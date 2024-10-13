@@ -1,1 +1,5 @@
-<p>item-collection-container works!</p>
+<div>
+  @if(items() !== undefined){
+  <app-item-collection-detail [items]="items()"></app-item-collection-detail>
+  }
+</div>
