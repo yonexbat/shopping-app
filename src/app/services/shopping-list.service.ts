@@ -12,6 +12,7 @@ import {
 } from '@angular/fire/firestore';
 import { Item } from '../model/item';
 import { AuthenticationService } from './authentication.service';
+import { ItemWithMeta } from '../model/itemwithmeta';
 @Injectable({
   providedIn: 'root',
 })
@@ -20,6 +21,10 @@ export class ShoppingListService {
   private unsubscribe: Unsubscribe | undefined;
 
   public items: WritableSignal<Item[] | undefined> = signal<Item[] | undefined>(
+    undefined
+  );
+
+  public items2: WritableSignal<ItemWithMeta[] | undefined> = signal<ItemWithMeta[] | undefined>(
     undefined
   );
 
@@ -51,6 +56,21 @@ export class ShoppingListService {
       });
       this.sortByName(items);
       this.items.set(items);
+
+      const items2: ItemWithMeta[] = [];
+      change.docChanges().forEach((nested) => {
+        
+        console.log(`nested.type ${nested.type}`);
+        const item: ItemWithMeta = {
+          changeType: nested.type,
+          item: nested.doc.data() as Item
+        }
+        item.item.id = nested.doc.id;
+        items2.push(item);
+        
+      });
+      this.items2.set(items2);
+
     });
   }
 
