@@ -1,7 +1,8 @@
-import { Component, input } from '@angular/core';
+import { Component, EventEmitter, input, Output } from '@angular/core';
 import { ItemDetailComponent } from '../../item-detail/item-detail.component';
 import { JsonPipe } from '@angular/common';
 import { Item } from '../../model/item';
+import { UpdateItem } from '../../model/updateitem';
 
 @Component({
   selector: 'app-items-detail',
@@ -12,4 +13,9 @@ import { Item } from '../../model/item';
 })
 export class ItemsDetailComponent {
   public items = input<Item[]>();    
+  @Output() public onListChanged = new EventEmitter<UpdateItem>();
+
+  public selectItem(event: UpdateItem){
+    this.onListChanged.emit(event);
+  }
 }

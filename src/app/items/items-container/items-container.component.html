@@ -1,7 +1,5 @@
 <div>
   @if(items() !== undefined){
-  <app-items-detail [items]="items()"></app-items-detail>
+  <app-items-detail [items]="items()" (onListChanged)="onListChanged($event)"></app-items-detail>
   }
-
-  {{this.form.value | json }}
 </div>

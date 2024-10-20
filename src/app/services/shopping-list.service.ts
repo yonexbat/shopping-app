@@ -1,4 +1,5 @@
 import {
+  computed,
   effect,
   Injectable,
   signal,
@@ -9,10 +10,13 @@ import {
   onSnapshot,
   Firestore,
   Unsubscribe,
+  doc,
+  getDoc,
+  setDoc,
 } from '@angular/fire/firestore';
 import { Item } from '../model/item';
 import { AuthenticationService } from './authentication.service';
-import { ItemWithMeta } from '../model/itemwithmeta';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -24,9 +28,13 @@ export class ShoppingListService {
     undefined
   );
 
-  public items2: WritableSignal<ItemWithMeta[] | undefined> = signal<ItemWithMeta[] | undefined>(
-    undefined
-  );
+  public itemsSortedForListCreator = computed(() => {
+    const items = this.items();
+    if(items) {
+      this.sortForListCreator(items);
+    }
+    return items;
+  });
 
   constructor(
     private firestore: Firestore,
@@ -52,15 +60,16 @@ export class ShoppingListService {
     this.unsubscribe = onSnapshot(list, (change) => {
       const items: Item[] = [];
       change.forEach((doc) => {
-        items.push(doc.data() as Item);
+        const item = doc.data() as Item;
+        item.id = doc.id;
+        items.push(item);
       });
-      this.sortByName(items);
+      //this.sortForListCreator(items);
       this.items.set(items);
 
+      /*
       const items2: ItemWithMeta[] = [];
-      change.docChanges().forEach((nested) => {
-        
-        console.log(`nested.type ${nested.type}`);
+      change.docChanges().forEach((nested) => {        
         const item: ItemWithMeta = {
           changeType: nested.type,
           item: nested.doc.data() as Item
@@ -69,14 +78,46 @@ export class ShoppingListService {
         items2.push(item);
         
       });
-      this.items2.set(items2);
+      this.items2.set(items2);*/
 
     });
+  }
+
+  sortForListCreator(items: Item[]): Item[]
+  {
+    // sort done and not done
+    items.sort((a: Item, b: Item) => {
+
+      // first sort for on list or not on list
+      if(a.onList === b.onList)
+      {
+        return (a.name ?? '').localeCompare(b.name ?? '');
+      }
+      if(a.onList === true)
+      {
+        return -1;
+      }
+      return 1;
+    })
+
+    return items;
   }
 
   sortByName(items: Item[] ){
     items.sort((a: Item, b: Item) => {
       return (a.name ?? '').localeCompare(b.name ?? '');
     })
+  }
+
+  public async setItemOnList(id: string, isOnList: boolean)
+  {
+    const itemDocRev = doc(
+      this.firestore,
+      `/shoppinglists/${this.shoppingListId}/items/${id}`
+    );
+    const itemDocSnap = await getDoc(itemDocRev);
+    const item = itemDocSnap.data() as Item;
+    item.onList = isOnList;
+    await setDoc(itemDocRev, item);
   }
 }

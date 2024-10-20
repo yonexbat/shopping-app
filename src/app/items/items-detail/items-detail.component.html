@@ -1,5 +1,5 @@
 <div>
   @for (item of items(); track $index) {   
-    <app-item-detail [item]="item"></app-item-detail>
+    <app-item-detail [item]="item" (onListChanged)="selectItem($event)"></app-item-detail>
   }
 </div>

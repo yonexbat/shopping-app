@@ -1,6 +1,8 @@
 <div>
-    <input type="checkbox" [(checked)]="onShoppingList"/>
+    @if(item) {
+    <input type="checkbox" (change)="onCheckedChange($event)" [checked]="onShoppingList()"/>
     {{ item.sort }}
     {{ item.name }}
-    {{ item.onList}}
+    {{ item.onList}}    
+    }
 </div>
