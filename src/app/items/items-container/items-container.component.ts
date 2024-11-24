@@ -7,7 +7,7 @@ import { UpdateItem } from '../../model/updateitem';
 
 @Component({
     selector: 'app-items-container',
-    imports: [ItemsDetailComponent, JsonPipe],
+    imports: [ItemsDetailComponent],
     templateUrl: './items-container.component.html',
     styleUrl: './items-container.component.scss'
 })
@@ -20,6 +20,10 @@ export class ItemsContainerComponent {
 
   public onListChanged(item: UpdateItem){
     this.shoppingListService.setItemOnList(item.id, item.onShoppingList);
+  }
+
+  public onShoppingCarChanged(item: UpdateItem){
+    
   }
 
 }

@@ -6,7 +6,6 @@ import { UpdateItem } from '../model/updateitem';
 
 @Component({
     selector: 'app-item-detail',
-    imports: [JsonPipe],
     templateUrl: './item-detail.component.html',
     styleUrl: './item-detail.component.scss'
 })
@@ -14,6 +13,7 @@ export class ItemDetailComponent {
   
   private _item!: Item;
   onShoppingList = model(false);
+  onShoppingCar = model(false);
   
   @Output() public onListChanged = new EventEmitter<UpdateItem>();
 

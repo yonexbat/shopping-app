@@ -111,13 +111,26 @@ export class ShoppingListService {
 
   public async setItemOnList(id: string, isOnList: boolean)
   {
+    await this.updateItem(id, (item: Item) => {
+      item.onList = isOnList;
+    });
+  }
+
+  public async setItemOnOnShoppingCar(id: string, isOnShoppingCar: boolean)
+  {
+    await this.updateItem(id, (item: Item) => {
+      item.done = isOnShoppingCar;
+    });
+  }
+
+  private async updateItem(id: string, fn: (item: Item) => void){
     const itemDocRev = doc(
       this.firestore,
       `/shoppinglists/${this.shoppingListId}/items/${id}`
     );
     const itemDocSnap = await getDoc(itemDocRev);
     const item = itemDocSnap.data() as Item;
-    item.onList = isOnList;
+    fn(item);
     await setDoc(itemDocRev, item);
   }
 }

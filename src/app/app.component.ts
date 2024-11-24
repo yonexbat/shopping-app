@@ -5,7 +5,7 @@ import { LoginContainerComponent } from './login/login-container/login-container
 
 @Component({
     selector: 'app-root',
-    imports: [RouterOutlet, AsyncPipe, LoginContainerComponent],
+    imports: [RouterOutlet, LoginContainerComponent],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss'
 })

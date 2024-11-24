@@ -5,27 +5,27 @@ import { JsonPipe } from '@angular/common';
 import { LoginDetailComponent } from "../login-detail/login-detail.component";
 
 @Component({
-    selector: 'app-login',
-    imports: [JsonPipe, LoginContainerComponent, LoginDetailComponent],
-    templateUrl: './login-container.component.html',
-    styleUrl: './login-container.component.scss'
+  selector: 'app-login',
+  imports: [LoginDetailComponent],
+  templateUrl: './login-container.component.html',
+  styleUrl: './login-container.component.scss'
 })
 export class LoginContainerComponent {
 
 
-  public user: Signal<User | undefined >;
+  public user: Signal<User | undefined>;
   public isLoggedIn: Signal<boolean | undefined>;
 
-  public constructor(private authService: AuthenticationService){
+  public constructor(private authService: AuthenticationService) {
     this.user = this.authService.user;
     this.isLoggedIn = this.authService.isLoggedIn;
   }
 
-  public loginClick(){
+  public loginClick() {
     this.authService.login();
   }
 
-  public logoffClick(){
+  public logoffClick() {
     this.authService.logoff();
   }
 }

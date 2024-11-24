@@ -6,7 +6,7 @@ import { UpdateItem } from '../../model/updateitem';
 
 @Component({
     selector: 'app-items-detail',
-    imports: [ItemDetailComponent, JsonPipe],
+    imports: [ItemDetailComponent],
     templateUrl: './items-detail.component.html',
     styleUrl: './items-detail.component.scss'
 })

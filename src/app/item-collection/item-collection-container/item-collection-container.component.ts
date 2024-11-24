@@ -6,7 +6,7 @@ import { ItemCollectionDetailComponent } from '../item-collection-detail/item-co
 
 @Component({
     selector: 'app-item-collection-container',
-    imports: [JsonPipe, ItemCollectionDetailComponent],
+    imports: [ItemCollectionDetailComponent],
     templateUrl: './item-collection-container.component.html',
     styleUrl: './item-collection-container.component.scss'
 })
