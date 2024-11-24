@@ -3,7 +3,8 @@ import { ShoppingListService } from '../../services/shopping-list.service';
 import { ItemsDetailComponent } from '../items-detail/items-detail.component';
 import { Item } from '../../model/item';
 import { JsonPipe } from '@angular/common';
-import { UpdateItem } from '../../model/updateitem';
+import { ListChangedEvent } from '../../model/list-changed-event';
+import { CartChangedEvent } from '../../model/cart-changed-event';
 
 @Component({
     selector: 'app-items-container',
@@ -18,12 +19,12 @@ export class ItemsContainerComponent {
     this.items = shoppingListService.itemsSortedForListCreator;
   }
 
-  public onListChanged(item: UpdateItem){
+  public onListChanged(item: ListChangedEvent){
     this.shoppingListService.setItemOnList(item.id, item.onShoppingList);
   }
 
-  public onShoppingCarChanged(item: UpdateItem){
-    
+  public onShoppingCartChanged(item: CartChangedEvent){
+    this.shoppingListService.setItemOnOnShoppingCar(item.id, item.onShoppingCart);
   }
 
 }

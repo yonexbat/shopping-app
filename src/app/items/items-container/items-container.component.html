@@ -1,5 +1,5 @@
 <div>
   @if(items() !== undefined){
-  <app-items-detail [items]="items()" (onListChanged)="onListChanged($event)"></app-items-detail>
+  <app-items-detail [items]="items()" (onCartChanged)="onShoppingCartChanged($event)"  (onListChanged)="onListChanged($event)"></app-items-detail>
   }
 </div>
