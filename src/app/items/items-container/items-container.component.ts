@@ -6,11 +6,10 @@ import { JsonPipe } from '@angular/common';
 import { UpdateItem } from '../../model/updateitem';
 
 @Component({
-  selector: 'app-items-container',
-  standalone: true,
-  imports: [ItemsDetailComponent, JsonPipe],
-  templateUrl: './items-container.component.html',
-  styleUrl: './items-container.component.scss',
+    selector: 'app-items-container',
+    imports: [ItemsDetailComponent, JsonPipe],
+    templateUrl: './items-container.component.html',
+    styleUrl: './items-container.component.scss'
 })
 export class ItemsContainerComponent {
   public items: Signal<Item[] | undefined>;

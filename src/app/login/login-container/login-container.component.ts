@@ -5,11 +5,10 @@ import { JsonPipe } from '@angular/common';
 import { LoginDetailComponent } from "../login-detail/login-detail.component";
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [JsonPipe, LoginContainerComponent, LoginDetailComponent],
-  templateUrl: './login-container.component.html',
-  styleUrl: './login-container.component.scss'
+    selector: 'app-login',
+    imports: [JsonPipe, LoginContainerComponent, LoginDetailComponent],
+    templateUrl: './login-container.component.html',
+    styleUrl: './login-container.component.scss'
 })
 export class LoginContainerComponent {
 

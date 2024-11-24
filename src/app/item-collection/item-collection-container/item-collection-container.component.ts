@@ -5,11 +5,10 @@ import { JsonPipe } from '@angular/common';
 import { ItemCollectionDetailComponent } from '../item-collection-detail/item-collection-detail.component';
 
 @Component({
-  selector: 'app-item-collection-container',
-  standalone: true,
-  imports: [JsonPipe, ItemCollectionDetailComponent],
-  templateUrl: './item-collection-container.component.html',
-  styleUrl: './item-collection-container.component.scss'
+    selector: 'app-item-collection-container',
+    imports: [JsonPipe, ItemCollectionDetailComponent],
+    templateUrl: './item-collection-container.component.html',
+    styleUrl: './item-collection-container.component.scss'
 })
 export class ItemCollectionContainerComponent {
 

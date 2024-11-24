@@ -5,11 +5,10 @@ import { Item } from '../../model/item';
 import { UpdateItem } from '../../model/updateitem';
 
 @Component({
-  selector: 'app-items-detail',
-  standalone: true,
-  imports: [ItemDetailComponent, JsonPipe],
-  templateUrl: './items-detail.component.html',
-  styleUrl: './items-detail.component.scss'
+    selector: 'app-items-detail',
+    imports: [ItemDetailComponent, JsonPipe],
+    templateUrl: './items-detail.component.html',
+    styleUrl: './items-detail.component.scss'
 })
 export class ItemsDetailComponent {
   public items = input<Item[]>();    

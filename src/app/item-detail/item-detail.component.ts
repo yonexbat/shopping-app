@@ -5,11 +5,10 @@ import { update } from '@angular/fire/database';
 import { UpdateItem } from '../model/updateitem';
 
 @Component({
-  selector: 'app-item-detail',
-  standalone: true,
-  imports: [JsonPipe],
-  templateUrl: './item-detail.component.html',
-  styleUrl: './item-detail.component.scss'
+    selector: 'app-item-detail',
+    imports: [JsonPipe],
+    templateUrl: './item-detail.component.html',
+    styleUrl: './item-detail.component.scss'
 })
 export class ItemDetailComponent {
   
