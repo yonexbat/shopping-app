@@ -29,8 +29,9 @@ export class ShoppingListService {
   );
 
   public itemsSortedForListCreator = computed(() => {
-    const items = this.items();
-    if(items) {
+    let items = this.items();
+    if (items) {
+      items = [...items];
       this.sortForListCreator(items);
     }
     return items;
@@ -42,9 +43,8 @@ export class ShoppingListService {
   ) {
     effect(() => {
       const isLoggedIn = authService.isLoggedIn();
-      if(isLoggedIn === true)
-      {
-        if(this.unsubscribe){
+      if (isLoggedIn === true) {
+        if (this.unsubscribe) {
           this.unsubscribe();
         }
         this.init();
@@ -83,18 +83,15 @@ export class ShoppingListService {
     });
   }
 
-  sortForListCreator(items: Item[]): Item[]
-  {
+  sortForListCreator(items: Item[]): Item[] {
     // sort done and not done
     items.sort((a: Item, b: Item) => {
 
       // first sort for on list or not on list
-      if(a.onList === b.onList)
-      {
+      if (a.onList === b.onList) {
         return (a.name ?? '').localeCompare(b.name ?? '');
       }
-      if(a.onList === true)
-      {
+      if (a.onList === true) {
         return -1;
       }
       return 1;
@@ -103,27 +100,19 @@ export class ShoppingListService {
     return items;
   }
 
-  sortByName(items: Item[] ){
-    items.sort((a: Item, b: Item) => {
-      return (a.name ?? '').localeCompare(b.name ?? '');
-    })
-  }
-
-  public async setItemOnList(id: string, isOnList: boolean)
-  {
+  public async setItemOnList(id: string, isOnList: boolean) {
     await this.updateItem(id, (item: Item) => {
       item.onList = isOnList;
     });
   }
 
-  public async setItemOnOnShoppingCar(id: string, isOnShoppingCar: boolean)
-  {
+  public async setItemOnOnShoppingCar(id: string, isOnShoppingCar: boolean) {
     await this.updateItem(id, (item: Item) => {
       item.done = isOnShoppingCar;
     });
   }
 
-  private async updateItem(id: string, fn: (item: Item) => void){
+  private async updateItem(id: string, fn: (item: Item) => void) {
     const itemDocRev = doc(
       this.firestore,
       `/shoppinglists/${this.shoppingListId}/items/${id}`
