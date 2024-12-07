@@ -1,1 +1,5 @@
-<p>items-shopper-container works!</p>
+<div>
+  @if(items() !== undefined){
+  <app-items-shopper-detail (onCartChanged)="onCartChanged($event)" [items]="items()"></app-items-shopper-detail>
+  }
+</div>

@@ -7,5 +7,5 @@ import { ItemsShopperContainerComponent } from './items-shopper/items-shopper-co
 export const routes: Routes = [
   { path: 'item-collection', component: ItemCollectionContainerComponent, canActivate: [authGuard] },
   { path: 'items', component: ItemsContainerComponent, canActivate: [authGuard] },
-  { path: 'items-shop', component: ItemsShopperContainerComponent, canActivate: [authGuard] }
+  { path: 'items-shopper', component: ItemsShopperContainerComponent, canActivate: [authGuard] }
 ];

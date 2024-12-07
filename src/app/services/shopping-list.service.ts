@@ -16,6 +16,7 @@ import {
 } from '@angular/fire/firestore';
 import { Item } from '../model/item';
 import { AuthenticationService } from './authentication.service';
+import { docChanges, DocumentChangeType } from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -33,6 +34,15 @@ export class ShoppingListService {
     if (items) {
       items = [...items];
       this.sortForListCreator(items);
+    }
+    return items;
+  });
+
+  public itemsSortedForShopper = computed(() => {
+    let items = this.items();
+    if (items) {
+      items = items.filter((item) => item.onList);
+      this.sortForShopper(items);
     }
     return items;
   });
@@ -58,35 +68,37 @@ export class ShoppingListService {
       `/shoppinglists/${this.shoppingListId}/items`
     );
     this.unsubscribe = onSnapshot(list, (change) => {
+      /*
+      const itmesFromStore = this.items() ?? [];
+      change.docChanges().forEach((docChange) => {
+        const changeType: DocumentChangeType = docChange.type;
+        console.log(docChange.type)
+        const item = docChange.doc.data() as Item;
+        if(changeType == "added"){
+          itmesFromStore.push(item);
+        }        
+        if(changeType == "modified")
+        {
+          const currentItem = itmesFromStore.find(x => x.id == item.id);
+          if(currentItem) {
+            currentItem.done = item.done;
+          }
+        }
+      });
+      this.items.set(itmesFromStore);*/
+
       const items: Item[] = [];
       change.forEach((doc) => {
         const item = doc.data() as Item;
         item.id = doc.id;
         items.push(item);
       });
-      //this.sortForListCreator(items);
       this.items.set(items);
-
-      /*
-      const items2: ItemWithMeta[] = [];
-      change.docChanges().forEach((nested) => {        
-        const item: ItemWithMeta = {
-          changeType: nested.type,
-          item: nested.doc.data() as Item
-        }
-        item.item.id = nested.doc.id;
-        items2.push(item);
-        
-      });
-      this.items2.set(items2);*/
-
     });
   }
 
   sortForListCreator(items: Item[]): Item[] {
-    // sort done and not done
     items.sort((a: Item, b: Item) => {
-
       // first sort for on list or not on list
       if (a.onList === b.onList) {
         return (a.name ?? '').localeCompare(b.name ?? '');
@@ -95,7 +107,22 @@ export class ShoppingListService {
         return -1;
       }
       return 1;
-    })
+    });
+
+    return items;
+  }
+
+  sortForShopper(items: Item[]): Item[] {
+    items.sort((a: Item, b: Item) => {
+      // first sort for on list or not on list
+      if (a.done === b.done) {
+        return (a.name ?? '').localeCompare(b.name ?? '');
+      }
+      if (a.done === true) {
+        return 1;
+      }
+      return -1;
+    });
 
     return items;
   }

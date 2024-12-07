@@ -1,1 +1,5 @@
-<p>items-shopper-detail works!</p>
+<div>
+    @for (item of items(); track $index) {   
+        <app-item-shopper-detail [item]="item" (onCartChanged)="onCartCheckedChange($event)"></app-item-shopper-detail>
+    }
+  </div>
