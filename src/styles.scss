@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+html,
+body,
+html * {
+  font-family: "Roboto", sans-serif;
+}
+
+.button {
+  background-color: rgb(43, 108, 176);
+  color: white;
+  padding: 0.5rem;
+  border-style: solid;
+  border-radius: 0.25rem;
+  border-width: 0px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: rgb(31, 138, 253);
+}

@@ -1,6 +1,10 @@
-<div>
-    <input type="checkbox" (change)="onCartCheckedChange($event)" [checked]="onShoppingCar()"/>
-    {{item().name}}
-    {{item().description}}    
-    {{item().done}}
+<div
+  class="item"
+  [class.item-in-cart]="item().done === true"
+  [class.item-not-in-cart]="item().done === false"
+  (click)="toggle()"
+>
+  <span style="margin-left: 1rem;">{{ item().name }}</span>
+  <span>{{ item().description }}</span>
+  <span>{{ item().done }} </span>
 </div>

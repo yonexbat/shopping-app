@@ -3,9 +3,9 @@
         {{ user()?.displayName }}
       
         @if( isLoggedIn() === false) {
-        <button (click)="loginClick()">Login</button>
+        <button (click)="loginClick()" class="button">Login</button>
         } @else if( isLoggedIn() === true ) {
-        <button (click)="logoffClick()">Logoff</button>
+        <button (click)="logoffClick()" class="button">Logoff</button>
         }        
       </p>
       

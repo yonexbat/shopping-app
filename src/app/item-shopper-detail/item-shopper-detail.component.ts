@@ -19,18 +19,18 @@ import { CartChangedEvent } from '../model/cart-changed-event';
 export class ItemShopperDetailComponent {
   public item: InputSignal<Item> = input.required<Item>();
   @Output() public onCartChanged = new EventEmitter<CartChangedEvent>();
-  onShoppingCar = model(false);
+  onShoppingCart = model(false);
 
   constructor() {
     effect(() => {
       const item = this.item();
-      this.onShoppingCar.set(item.done);
+      this.onShoppingCart.set(item.done);
     });
   }
 
-  onCartCheckedChange(event: Event) {
-    const isChecked = (event.target as HTMLInputElement).checked;
-    this.onShoppingCar.set(isChecked);
+  toggle() {
+    const isChecked = !this.onShoppingCart();
+    this.onShoppingCart.set(isChecked);
     this.onCartChanged.emit({ id: this.item().id, onShoppingCart: isChecked });
   }
 }
