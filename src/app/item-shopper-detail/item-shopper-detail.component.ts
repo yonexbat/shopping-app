@@ -9,10 +9,11 @@ import {
 } from '@angular/core';
 import { Item } from '../model/item';
 import { CartChangedEvent } from '../model/cart-changed-event';
+import { SortIconPipe } from '../sort-icon.pipe';
 
 @Component({
   selector: 'app-item-shopper-detail',
-  imports: [],
+  imports: [SortIconPipe],
   templateUrl: './item-shopper-detail.component.html',
   styleUrl: './item-shopper-detail.component.scss',
 })

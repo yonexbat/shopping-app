@@ -4,7 +4,6 @@
   [class.item-not-in-cart]="item().done === false"
   (click)="toggle()"
 >
-  <span style="margin-left: 1rem;">{{ item().name }}</span>
-  <span>{{ item().description }}</span>
-  <span>{{ item().done }} </span>
+  <span style="margin-left: 1rem">{{ item().sort | sortIcon }}</span>
+  <span style="margin-left: 0.5rem;">{{ item().name }}</span>
 </div>
