@@ -116,7 +116,16 @@ export class ShoppingListService {
     items.sort((a: Item, b: Item) => {
       // first sort for on list or not on list
       if (a.done === b.done) {
-        return (a.name ?? '').localeCompare(b.name ?? '');
+        if(a.sort === b.sort)
+        {
+          return (a.name ?? '').localeCompare(b.name ?? '');
+        }
+        if(a.sort > b.sort)
+        {
+          return 1;
+        }
+        return -1;
+        
       }
       if (a.done === true) {
         return 1;
