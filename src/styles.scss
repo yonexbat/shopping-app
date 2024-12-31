@@ -19,3 +19,9 @@ html * {
 .button:hover {
   background-color: rgb(31, 138, 253);
 }
+
+.active-link {
+  .button {
+    background-color: rgb(31, 138, 253);
+  }
+}

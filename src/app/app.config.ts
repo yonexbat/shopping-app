@@ -18,7 +18,7 @@ export const appConfig: ApplicationConfig = {
           'https://shoppinglist-d0d2b-default-rtdb.europe-west1.firebasedatabase.app',
         storageBucket: 'shoppinglist-d0d2b.appspot.com',
         apiKey: 'AIzaSyC8a6hEl5gLEvbAQpuDT6foIt3yyISp7s0',
-        authDomain: 'shoppinglist-d0d2b.firebaseapp.com',
+        authDomain: 'shoppinglist-d0d2b-f9d95.firebaseapp.com',
         messagingSenderId: '579901157928',
         measurementId: 'G-1WH057YYMT',
       })
