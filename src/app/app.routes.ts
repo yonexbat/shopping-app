@@ -14,8 +14,8 @@ export const routes: Routes = [
     path: 'items',
     loadComponent: () =>
       import(
-        './item-collection/item-collection-container/item-collection-container.component'
-      ).then((mod) => mod.ItemCollectionContainerComponent),
+        './items/items-container/items-container.component'
+      ).then((mod) => mod.ItemsContainerComponent),
     canActivate: [authGuard],
   },
   {

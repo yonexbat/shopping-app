@@ -56,7 +56,7 @@ export class ShoppingListService {
       if (isLoggedIn === true) {
         if (this.unsubscribe) {
           this.unsubscribe();
-        }
+        }        
         this.init();
       }
     });

@@ -1,10 +1,10 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, inject, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { FirebaseApp, initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { FirestoreSettings, getFirestore, initializeFirestore, memoryLocalCache, persistentLocalCache, persistentMultipleTabManager, provideFirestore } from '@angular/fire/firestore';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -24,6 +24,12 @@ export const appConfig: ApplicationConfig = {
       })
     ),
     provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore()),
+    provideFirestore(() => {
+      const app = inject(FirebaseApp);
+      const settings: FirestoreSettings = {
+        localCache: persistentLocalCache(/*settings*/{})
+      };
+      return initializeFirestore(app, settings);
+    }),
   ],
 };
