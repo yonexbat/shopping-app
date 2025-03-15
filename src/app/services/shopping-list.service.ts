@@ -28,8 +28,14 @@ export class ShoppingListService {
     undefined
   );
 
+  public creatorFilter: WritableSignal<string> = signal<string>('');
+
   public itemsSortedForListCreator = computed(() => {
     let items = this.items();
+    let filterValue = this.creatorFilter();
+    filterValue = filterValue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp(`${filterValue}`, "i");
+    items = items?.filter(x =>  regex.test(x.name));
     if (items) {
       items = [...items];
       this.sortForListCreator(items);

@@ -1,5 +1,15 @@
 <div>
-  @for (item of items(); track $index) {   
-    <app-item-detail [item]="item" (onListChanged)="selectItem($event)" (onCartChanged)="selectOnCart($event)"></app-item-detail>
-  }
+  <div>
+    <label>Filter</label>
+    <input type="text" style="margin-left: 1rem"   [(ngModel)]="filter"  />
+  </div>
+  <div>
+    @for (item of items(); track $index) {
+    <app-item-detail
+      [item]="item"
+      (onListChanged)="selectItem($event)"
+      (onCartChanged)="selectOnCart($event)"
+    ></app-item-detail>
+    }
+  </div>
 </div>

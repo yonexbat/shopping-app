@@ -27,4 +27,9 @@ export class ItemsContainerComponent {
     this.shoppingListService.setItemOnOnShoppingCar(item.id, item.onShoppingCart);
   }
 
+  public onFilterChanged(filter: string)
+  {
+    this.shoppingListService.creatorFilter.set(filter);
+  }
+
 }
