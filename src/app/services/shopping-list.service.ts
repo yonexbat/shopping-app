@@ -16,7 +16,6 @@ import {
 } from '@angular/fire/firestore';
 import { Item } from '../model/item';
 import { AuthenticationService } from './authentication.service';
-import { docChanges, DocumentChangeType } from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root',
