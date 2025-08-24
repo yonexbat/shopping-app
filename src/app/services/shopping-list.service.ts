@@ -54,7 +54,7 @@ export class ShoppingListService {
 
   constructor(
     private firestore: Firestore,
-    private authService: AuthenticationService
+    authService: AuthenticationService
   ) {
     effect(() => {
       const isLoggedIn = authService.isLoggedIn();
